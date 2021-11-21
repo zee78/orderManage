@@ -100,7 +100,7 @@ class ProjectController extends Controller
       $order->ref_images = implode(",",$images);
      
       if ($order->save()) {
-          return response()->json(['status'=>'true' , 'message' => 'Project created successfully'] , 200);
+          return response()->json(['status'=>'true' , 'message' => 'Order created successfully'] , 200);
       }else{
            return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
       }

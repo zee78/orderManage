@@ -486,7 +486,7 @@ var createFormData = new FormData (formData);
         success: (response)=>{
             if (response.status == 'true') {
                 $.notify(response.message , 'success'  );
-                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/orders/";
+                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/orderManage/public/admin/orders/";
                 
                 
             }else{
