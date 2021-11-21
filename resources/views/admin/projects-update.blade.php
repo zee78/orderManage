@@ -33,7 +33,10 @@
 @slot('li_1') Order @endslot
 @slot('li_2') Update @endslot
 @endcomponent 
-
+<?php 
+  $require_things = array('Turban','Sherwani','Inner Suit','Shawal', 'Waist Coat','Prince Coat','Khussa/Shoes');
+  $requirements= explode(',',$getSingleData->need_deliver);
+?>
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
@@ -42,165 +45,208 @@
         <form id="updateProjectForm" enctype="multipart/form-data">
           @csrf
           <input type="hidden" name="id" value="{{$getSingleData->id}}">
-          <div class="form-group row mb-4">
-            <label for="projectname" class="col-form-label col-lg-2">Customer Name</label>
-            <div class="col-lg-10">
-              <input id="projectname" name="customer_name" type="text" class="form-control" value="{{$getSingleData->customer_name}}" placeholder="Enter Customer Name...">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectname" class="col-form-label">Customer Name:</label>
+                <input id="projectname" name="customer_name" type="text" class="form-control" value="{{$getSingleData->customer_name}}" placeholder="Enter Customer Name...">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="category" class="col-form-label">Contact Number:</label>
+                <input type="number" name="customer_contact" class="form-control" placeholder="Contact Number" value="{{$getSingleData->customer_contact}}">          
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="category" class="col-form-label col-lg-2">Contact Number</label>
-            <div class="col-lg-10">
-              <input type="number" name="customer_contact" class="form-control" placeholder="Contact Number" value="{{$getSingleData->customer_contact}}">
-            </div>          
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="level" class="col-form-label">Booking Date:</label>
+                <input type="date" name="booking_date" class="form-control" placeholder="Booking Date" value="{{$getSingleData->booking_date}}">         
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="level" class="col-form-label">Delivery Date:</label>
+                <input type="date" name="delivery_date" class="form-control" placeholder="Delivery Date" value="{{$getSingleData->delivery_date}}">
+              </div>
+            </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="level" class="col-form-label col-lg-2">Booking Date:</label>
-            <div class="col-lg-10">
-              <input type="date" name="booking_date" class="form-control" placeholder="Booking Date" value="{{$getSingleData->booking_date}}">
-            </div>          
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="level" class="col-form-label">Needs to Deliver:</label><br>
+                <div class="d-block mt-2">
+                  @foreach($require_things as $things)
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="need_deliver[]" value="{{$things}}" @foreach($requirements as $key => $value) @if($things == $value) checked @endif @endforeach>
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">{{$things}}</label>
+                  </div>
+                  @endforeach
+                </div>        
+              </div>
+            </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="level" class="col-form-label col-lg-2">Delivery Date:</label>
-            <div class="col-lg-10">
-              <input type="date" name="delivery_date" class="form-control" placeholder="Delivery Date" value="{{$getSingleData->delivery_date}}">
-            </div>          
-          </div>
-          <div class="form-group row mb-4">
+          
+          
+          <div class="form-group row mb-4 d-none">
             <label for="level" class="col-form-label col-lg-2">Invoice No:</label>
             <div class="col-lg-10">
               <input type="text" name="invoice_no" class="form-control" placeholder="Invoice" value="{{$getSingleData->invoice_no}}">
             </div>          
           </div>
           <h4>Size & Description</h4>
-          <div class="form-group row mb-4">
-            <label for="length" class="col-form-label col-lg-2">Neck:</label>
-            <div class="col-lg-10">
-              <input type="text" name="neck" class="form-control" placeholder="Neck Size" value="{{$getSingleData->neck}}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="length" class="col-form-label">Neck:</label>
+                <input type="text" name="neck" class="form-control" placeholder="Neck Size" value="{{$getSingleData->neck}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Shoulder:</label>
+                <input type="text" class="form-control" name="shoulder" placeholder="Shoulder Size" value="{{$getSingleData->shoulder}}">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Shoulder:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="shoulder" placeholder="Shoulder Size" value="{{$getSingleData->shoulder}}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Arms:</label>
+                <input type="text" class="form-control" name="arms" placeholder="Arms Size" value="{{$getSingleData->arms}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Biceps:</label>
+                <input type="text" class="form-control" name="biceps" placeholder="Biceps Size" value="{{$getSingleData->biceps}}">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Arms:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="arms" placeholder="Arms Size" value="{{$getSingleData->arms}}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Chest:</label>
+                <input type="text" class="form-control" name="chest" placeholder="Chest Size" value="{{$getSingleData->chest}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Back:</label>
+                <input type="text" class="form-control" name="back" placeholder="Back Size" value="{{$getSingleData->back}}">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Biceps:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="biceps" placeholder="Biceps Size" value="{{$getSingleData->biceps}}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Belly:</label>
+                <input type="text" class="form-control" name="belly" placeholder="Belly Size" value="{{$getSingleData->belly}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Wc Length:</label>
+                <input type="text" class="form-control" name="wc_length" placeholder="Wc Length" value="{{$getSingleData->wc_length}}">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Chest:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="chest" placeholder="Chest Size" value="{{$getSingleData->chest}}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Pc Length:</label>
+                <input type="text" class="form-control" name="pc_length" placeholder="Pc Length" value="{{$getSingleData->pc_length}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Sherwani Length:</label>
+                <input type="text" class="form-control" name="sherwani_length" placeholder="Sherwani Length" value="{{$getSingleData->sherwani_length}}">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Back:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="back" placeholder="Back Size" value="{{$getSingleData->back}}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Kurta Length:</label>
+                <input type="text" class="form-control" name="kurta_length" placeholder="Kurta Length" value="{{$getSingleData->kurta_length}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Waist:</label>
+                <input type="text" class="form-control" name="waist" placeholder="Waist" value="{{$getSingleData->waist}}">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Belly:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="belly" placeholder="Belly Size" value="{{$getSingleData->belly}}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Hips:</label>
+                <input type="text" class="form-control" name="hips" placeholder="Hips" value="{{$getSingleData->hips}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Thigh:</label>
+                <input type="text" class="form-control" name="thigh" placeholder="Thigh" value="{{$getSingleData->thigh}}">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Wc Length:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="wc_length" placeholder="Wc Length" value="{{$getSingleData->wc_length}}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Knee:</label>
+                <input type="text" class="form-control" name="knee" placeholder="Knee" value="{{$getSingleData->knee}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Calf:</label>
+                <input type="text" class="form-control" name="calf" placeholder="Calf" value="{{$getSingleData->calf}}">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Pc Length:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="pc_length" placeholder="Pc Length" value="{{$getSingleData->pc_length}}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Botton:</label>
+                <input type="text" class="form-control" name="botton" placeholder="Botton" value="{{$getSingleData->botton}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Length:</label>
+                <input type="text" class="form-control" name="length" placeholder="Length" value="{{$getSingleData->length}}">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Sherwani Length:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="sherwani_length" placeholder="Sherwani Length" value="{{$getSingleData->sherwani_length}}">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Kurta Length:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="kurta_length" placeholder="Kurta Length" value="{{$getSingleData->kurta_length}}">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Waist:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="waist" placeholder="Waist" value="{{$getSingleData->waist}}">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Hips:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="hips" placeholder="Hips" value="{{$getSingleData->hips}}">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Thigh:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="thigh" placeholder="Thigh" value="{{$getSingleData->thigh}}">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Knee:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="knee" placeholder="Knee" value="{{$getSingleData->knee}}">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Calf:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="calf" placeholder="Calf" value="{{$getSingleData->calf}}">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Botton:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="botton" placeholder="Botton" value="{{$getSingleData->botton}}">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Length:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="length" placeholder="Length" value="{{$getSingleData->length}}">
-            </div>
-          </div>
+    
           <h4>Referance</h4>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Color:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="ref_color" placeholder="Color" value="{{$getSingleData->ref_color}}">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Color:</label>
+                <input type="text" class="form-control" name="ref_color" placeholder="Color" value="{{$getSingleData->ref_color}}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Referance Design:</label>
+                <input type="text" class="form-control" name="ref_design" placeholder="Design" value="{{$getSingleData->ref_design}}">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Referance Design:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="ref_design" placeholder="Design" value="{{$getSingleData->ref_design}}">
-            </div>
-          </div>
+          
+          
           <div class="row mb-4">
-          <label class="col-form-label col-lg-2">Referance Pictures</label>
-          <div class="col-lg-10">
-            <input name="ref_images[]" form="updateProjectForm"  type="file" multiple />
-            
+            <label class="col-form-label col-lg-2">Referance Pictures</label>
+            <div class="col-lg-10">
+              <input name="ref_images[]" form="updateProjectForm"  type="file" multiple />
+            </div>
           </div>
-        </div>
         </form>
         
         <h4>Price</h4>
@@ -208,6 +254,13 @@
           <label for="projectdesc" class="col-form-label col-lg-2">Order Price:</label>
           <div class="col-lg-10">
             <input type="text" class="form-control" form="updateProjectForm" name="order_price" placeholder="Price" value="{{$getSingleData->order_price}}">
+          </div>
+        </div>
+        <h4>Order Description</h4>
+        <div class="form-group row mb-4">
+          <label for="projectdesc" class="col-form-label col-lg-2">Order Description:</label>
+          <div class="col-lg-10">
+            <textarea name="order_desc" class="form-control" form="updateProjectForm" placeholder="Order Description" rows="5">{{$getSingleData->order_desc}}</textarea>
           </div>
         </div>
         <div class="row justify-content-end">
@@ -287,10 +340,6 @@
               delivery_date: {
                   required: true,
                   // number: true
-              },
-              invoice_no: {
-                  required: true,
-                  
               },
               neck: {
                   required: true,
@@ -374,10 +423,6 @@
               delivery_date: {
                   required: "Please enter delivery date",
                   // number: "Please enter valid integer",
-              } ,
-              invoice_no: {
-                  required: "Please enter invoice no",
-
               } ,
               neck: {
                   required: "Please enter neck size",

@@ -60,7 +60,7 @@ class ProjectController extends Controller
       $order->customer_contact = $validatedData['customer_contact'];
       $order->booking_date = $validatedData['booking_date'];
       $order->delivery_date = $validatedData['delivery_date'];;
-      $order->invoice_no = $validatedData['invoice_no'];
+      $order->invoice_no = mt_rand( 10000000, 99999999 );
       $order->neck = $validatedData['neck'];
       $order->shoulder = $validatedData['shoulder'];
       $order->arms = $validatedData['arms'];
@@ -82,6 +82,7 @@ class ProjectController extends Controller
       $order->ref_color = $validatedData['ref_color'];
       $order->ref_design = $validatedData['ref_design'];
       $order->order_price = $validatedData['order_price'];
+      $order->order_desc = $request->input('order_desc');
       
       $images=array();
       if($files=$request->file('ref_images')){
@@ -96,8 +97,18 @@ class ProjectController extends Controller
           $images[]=$imagename;
         }
       }
-
       $order->ref_images = implode(",",$images);
+      // dd($request->input('need_deliver'));
+      $deliver=array();
+      if($requirements=$request->input('need_deliver')){
+        foreach($requirements as $require){
+          
+
+          $deliver[]=$require;
+        }
+      }
+      
+      $order->need_deliver = implode(',', $deliver);
      
       if ($order->save()) {
           return response()->json(['status'=>'true' , 'message' => 'Order created successfully'] , 200);
@@ -115,8 +126,11 @@ class ProjectController extends Controller
     public function show($id)
     {
       $order = Order::find($id);
+      // dd();
+      $requirements= explode(',',$order->need_deliver);
       return View::make('admin.projects-overview')->with([
-        'order' => $order
+        'order' => $order,
+        'requirements' => $requirements,
       ]);
     }
 
@@ -129,6 +143,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
       $getSingleData = Order::find($id);
+      // dd($getSingleData);
       return \View::make('admin.projects-update')->with([
         "getSingleData" => $getSingleData
       ]);
@@ -147,13 +162,13 @@ class ProjectController extends Controller
       $validatedData = $request->validated();
     
       $order = Order::find($id);
-      // dd($job);
+      // dd($order->need_deliver);
       $order->posted_by = auth()->user()->name;
       $order->customer_name = $validatedData['customer_name'];
       $order->customer_contact = $validatedData['customer_contact'];
       $order->booking_date = $validatedData['booking_date'];
       $order->delivery_date = $validatedData['delivery_date'];;
-      $order->invoice_no = $validatedData['invoice_no'];
+      $order->invoice_no = mt_rand( 10000000, 99999999 );
       $order->neck = $validatedData['neck'];
       $order->shoulder = $validatedData['shoulder'];
       $order->arms = $validatedData['arms'];
@@ -175,7 +190,8 @@ class ProjectController extends Controller
       $order->ref_color = $validatedData['ref_color'];
       $order->ref_design = $validatedData['ref_design'];
       $order->order_price = $validatedData['order_price'];
-      
+      $order->order_desc = $request->input('order_desc');
+
       $images=array();
       if($request->file('ref_images') != ''){
         if($files=$request->file('ref_images')){
@@ -196,6 +212,22 @@ class ProjectController extends Controller
         }
       }
       $order->ref_images = implode(",",$images);
+      $deliver=array();
+      if($requirements=$request->input('need_deliver')){
+        if($requirements=$request->input('need_deliver')){
+          foreach($requirements as $require){
+            
+
+            $deliver[]=$require;
+          }
+        }
+      }else{
+        foreach (explode(',',$order->need_deliver) as $key => $value) {
+          $deliver[]=$value;
+        }
+      }
+      // dd($deliver);
+      $order->need_deliver = implode(',', $deliver);
      
       if ($order->save()) {
           return response()->json(['status'=>'true' , 'message' => 'Order updated successfully'] , 200);

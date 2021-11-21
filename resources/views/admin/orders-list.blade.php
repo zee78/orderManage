@@ -32,8 +32,8 @@
                 <h5 class="text-truncate font-size-14"><a href="#" class="text-dark">{{$order->customer_name}}</a></h5>
               </td>
               <td>{{$order->customer_contact}}</td>
-              <td class="text-capitalize">{{$order->booking_date}}</td>
-              <td>{{$order->delivery_date}}</td>
+              <td class="text-capitalize">{{date('d F Y', strtotime($order->booking_date))}}</td>
+              <td>{{date('d F Y', strtotime($order->delivery_date))}}</td>
               <!-- <td>{{$order->invoice_no}}</td> -->
               <?php 
                 $startdate = strtotime(date('Y-m-d'));
@@ -42,7 +42,9 @@
                 $remain_days = $days;
                ?>
               <td>
-                @if($remain_days <= 5)
+                @if($remain_days <= 0)
+                <span class="bg-danger text-white p-1 rounded">Delivery Date Passed</span>
+                @elseif($remain_days <= 5)
                   <span class="bg-danger text-white p-1 rounded">Remaining {{$remain_days}} days for delivery</span>
                 @elseif($remain_days > 5 && $remain_days <= 10)
                   <span class="bg-success text-white p-1 rounded">Remaining {{$remain_days}} days for delivery</span>

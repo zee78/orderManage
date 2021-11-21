@@ -37,5 +37,7 @@ class Order extends Model
       'ref_design',
       'ref_images',
       'order_price',
+      'need_deliver',
+      'order_desc',
     ];
 }
