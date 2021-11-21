@@ -28,7 +28,6 @@ class UpdateOrder extends FormRequest
           'customer_contact' => 'required',
           'booking_date' => 'required',
           'delivery_date' => 'required',
-          'invoice_no' => 'required',
           'neck' => 'required',
           'shoulder' => 'required',
           'arms' => 'required',

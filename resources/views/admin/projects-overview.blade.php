@@ -24,31 +24,45 @@
                             <h5 class="text-truncate font-size-16">Customer Name: </h5>
                             <h5>{{$order->customer_name}}</h5>
                           </div>
-                          <div class="d-flex justify-content-between">
+                          <div class="d-flex justify-content-between mb-3">
                             <h6 class="text-truncate font-size-14">Customer Contact: </h6>
                             <h6>{{$order->customer_contact}}</h6>
                           </div>
+                          <div class="d-flex justify-content-between mb-3">
+                            <h6 class="text-truncate font-size-14">Invoice No: </h6>
+                            <h6>{{$order->invoice_no}}</h6>
+                          </div>
+                          <div class="d-block mb-3">
+                            <h6 class="text-truncate font-size-14">Client Requirement </h6>
+                            <ul class="pl-3">
+                              @foreach($requirements as $require)
+                              <li><label class="text-capitalize">{{$require}}</label></li>
+                              @endforeach
+                            </ul>
+                            
+                          </div>
                           <div class="row task-dates d-print-flex d-print-table-row">
-                      <div class="col-lg-4">
-                          <div class="mt-4">
-                              <h5 class="font-size-14"><i class="bx bx-calendar mr-1 text-primary"></i> Booking Date</h5>
-                              <p class="text-muted mb-0">{{date('d F Y', strtotime($order->booking_date))}}</p>
-                          </div>
-                      </div>
+                            <div class="col-lg-4">
+                                <div class="mt-4">
+                                    <h5 class="font-size-14"><i class="bx bx-calendar mr-1 text-primary"></i> Booking Date</h5>
+                                    <p class="text-muted mb-0">{{date('d F Y', strtotime($order->booking_date))}}</p>
+                                </div>
+                            </div>
 
-                      <div class="col-lg-4">
-                          <div class="mt-4">
-                              <h5 class="font-size-14"><i class="bx bx-calendar-check mr-1 text-primary"></i> Delivery Date</h5>
-                              <p class="text-muted mb-0">{{date('d F Y', strtotime($order->delivery_date))}}</p>
-                          </div>
+                            <div class="col-lg-4">
+                                <div class="mt-4">
+                                    <h5 class="font-size-14"><i class="bx bx-calendar-check mr-1 text-primary"></i> Delivery Date</h5>
+                                    <p class="text-muted mb-0">{{date('d F Y', strtotime($order->delivery_date))}}</p>
+                                </div>
+                            </div>
+                        </div>
+
                       </div>
                   </div>
-                      </div>
-                  </div>
 
-                  <h5 class="font-size-15 mt-4">Size & Description :</h5>
+                  <h5 class="font-size-15 mt-4 d-none d-print-block">Size & Description :</h5>
 
-                  <div class="table-responsive">
+                  <div class="table-responsive d-none d-print-block">
                     <table class="table table-centered">
                       <tbody>
                         <tr>
@@ -199,8 +213,8 @@
                       </tbody>
                     </table>
                   </div>
-                  <h5>Reference</h5>
-                  <div class="table-responsive">
+                  <h5 class="d-none d-print-block">Reference</h5>
+                  <div class="table-responsive d-none d-print-block">
                     <table class="table table-centered">
                       <tbody>
                         <tr>

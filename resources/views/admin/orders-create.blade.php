@@ -33,164 +33,205 @@
 @slot('li_1') Order @endslot
 @slot('li_2') Create New @endslot
 @endcomponent 
-
+<?php 
+  $require_things = array('Turban','Sherwani','Inner Suit','Shawal', 'Waist Coat','Prince Coat','Khussa/Shoes');
+?>
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title mb-4">Create New Order</h4>
+        <h4 class="card-title mb-3">Create New Order</h4>
         <form id="createProjectForm">
           @csrf
-          <div class="form-group row mb-4">
-            <label for="projectname" class="col-form-label col-lg-2">Customer Name</label>
-            <div class="col-lg-10">
-              <input id="projectname" name="customer_name" type="text" class="form-control" placeholder="Enter Customer Name...">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectname" class="col-form-label">Customer Name:</label>
+                <input id="projectname" name="customer_name" type="text" class="form-control" placeholder="Enter Customer Name...">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="category" class="col-form-label">Contact Number:</label>
+                <input type="number" name="customer_contact" class="form-control" placeholder="Contact Number">          
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="category" class="col-form-label col-lg-2">Contact Number</label>
-            <div class="col-lg-10">
-              <input type="number" name="customer_contact" class="form-control" placeholder="Contact Number">
-            </div>          
-          </div>
-          <div class="form-group row mb-4">
-            <label for="level" class="col-form-label col-lg-2">Booking Date:</label>
-            <div class="col-lg-10">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="level" class="col-form-label">Booking Date:</label>
               <input type="date" name="booking_date" class="form-control" placeholder="Booking Date">
-            </div>          
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="level" class="col-form-label">Delivery Date:</label>
+                <input type="date" name="delivery_date" class="form-control" placeholder="Delivery Date">
+              </div>
+            </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="level" class="col-form-label col-lg-2">Delivery Date:</label>
-            <div class="col-lg-10">
-              <input type="date" name="delivery_date" class="form-control" placeholder="Delivery Date">
-            </div>          
+          <div class="row">
+            <div class="col-md-6 d-none">
+              <div class="form-group">
+                <label for="level" class="col-form-label">Invoice No:</label>
+                <input type="text" name="invoice_no" class="form-control" placeholder="Invoice">         
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="level" class="col-form-label">Needs to Deliver:</label><br>
+                <div class="d-block mt-2">
+                  @foreach($require_things as $things)
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="need_deliver[]" value="{{$things}}">
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">{{$things}}</label>
+                  </div>
+                  @endforeach
+                </div>        
+              </div>
+            </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="level" class="col-form-label col-lg-2">Invoice No:</label>
-            <div class="col-lg-10">
-              <input type="text" name="invoice_no" class="form-control" placeholder="Invoice">
-            </div>          
-          </div>
+          
           <h4>Size & Description</h4>
-          <div class="form-group row mb-4">
-            <label for="length" class="col-form-label col-lg-2">Neck:</label>
-            <div class="col-lg-10">
-              <input type="text" name="neck" class="form-control" placeholder="Neck Size">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="length" class="col-form-label">Neck:</label>
+                <input type="text" name="neck" class="form-control" placeholder="Neck Size">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Shoulder:</label>
+                <input type="text" class="form-control" name="shoulder" placeholder="Shoulder Size">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Shoulder:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="shoulder" placeholder="Shoulder Size">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Arms:</label>
+                <input type="text" class="form-control" name="arms" placeholder="Arms Size">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Biceps:</label>
+                <input type="text" class="form-control" name="biceps" placeholder="Biceps Size">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Arms:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="arms" placeholder="Arms Size">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Chest:</label>
+                <input type="text" class="form-control" name="chest" placeholder="Chest Size">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Back:</label>
+                <input type="text" class="form-control" name="back" placeholder="Back Size">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Biceps:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="biceps" placeholder="Biceps Size">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Belly:</label>
+                <input type="text" class="form-control" name="belly" placeholder="Belly Size">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Wc Length:</label>
+                <input type="text" class="form-control" name="wc_length" placeholder="Wc Length">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Chest:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="chest" placeholder="Chest Size">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Pc Length:</label>
+                <input type="text" class="form-control" name="pc_length" placeholder="Pc Length">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Sherwani Length:</label>
+                <input type="text" class="form-control" name="sherwani_length" placeholder="Sherwani Length">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Back:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="back" placeholder="Back Size">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Kurta Length:</label>
+                <input type="text" class="form-control" name="kurta_length" placeholder="Kurta Length">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Waist:</label>
+                <input type="text" class="form-control" name="waist" placeholder="Waist">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Belly:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="belly" placeholder="Belly Size">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Hips:</label>
+                <input type="text" class="form-control" name="hips" placeholder="Hips">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Thigh:</label>
+                <input type="text" class="form-control" name="thigh" placeholder="Thigh">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Wc Length:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="wc_length" placeholder="Wc Length">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Knee:</label>
+                <input type="text" class="form-control" name="knee" placeholder="Knee">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Calf:</label>
+                <input type="text" class="form-control" name="calf" placeholder="Calf">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Pc Length:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="pc_length" placeholder="Pc Length">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Botton:</label>
+                <input type="text" class="form-control" name="botton" placeholder="Botton">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Length:</label>
+                <input type="text" class="form-control" name="length" placeholder="Length">
+              </div>
             </div>
           </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Sherwani Length:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="sherwani_length" placeholder="Sherwani Length">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Kurta Length:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="kurta_length" placeholder="Kurta Length">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Waist:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="waist" placeholder="Waist">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Hips:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="hips" placeholder="Hips">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Thigh:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="thigh" placeholder="Thigh">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Knee:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="knee" placeholder="Knee">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Calf:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="calf" placeholder="Calf">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Botton:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="botton" placeholder="Botton">
-            </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Length:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="length" placeholder="Length">
-            </div>
-          </div>
+          
           <h4>Referance</h4>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Color:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="ref_color" placeholder="Color">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Color:</label>
+                <input type="text" class="form-control" name="ref_color" placeholder="Color">
+              </div>
             </div>
-          </div>
-          <div class="form-group row mb-4">
-            <label for="projectdesc" class="col-form-label col-lg-2">Referance Design:</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" name="ref_design" placeholder="Design">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="projectdesc" class="col-form-label">Referance Design:</label>
+                <input type="text" class="form-control" name="ref_design" placeholder="Design">
+              </div>
             </div>
           </div>
         </form>
@@ -206,6 +247,13 @@
           <label for="projectdesc" class="col-form-label col-lg-2">Order Price:</label>
           <div class="col-lg-10">
             <input type="text" form="createProjectForm" class="form-control" name="order_price" placeholder="Order Price">
+          </div>
+        </div>
+        <h4>Order Description</h4>
+        <div class="form-group row mb-4">
+          <label for="projectdesc" class="col-form-label col-lg-2">Order Description:</label>
+          <div class="col-lg-10">
+            <textarea name="order_desc" class="form-control" form="createProjectForm" placeholder="Order Description" rows="5"></textarea>
           </div>
         </div>
         <div class="row justify-content-end">
@@ -285,10 +333,6 @@
               delivery_date: {
                   required: true,
                   // number: true
-              },
-              invoice_no: {
-                  required: true,
-                  
               },
               neck: {
                   required: true,
@@ -373,10 +417,6 @@
               delivery_date: {
                   required: "Please enter delivery date",
                   // number: "Please enter valid integer",
-              } ,
-              invoice_no: {
-                  required: "Please enter invoice no",
-
               } ,
               neck: {
                   required: "Please enter neck size",
