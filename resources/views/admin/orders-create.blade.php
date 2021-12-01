@@ -80,12 +80,40 @@
               <div class="form-group">
                 <label for="level" class="col-form-label">Needs to Deliver:</label><br>
                 <div class="d-block mt-2">
-                  @foreach($require_things as $things)
+                  <!-- @foreach($require_things as $things)
                   <div class="form-check form-check-inline">
                     <input type="checkbox" name="need_deliver[]" value="{{$things}}">
                     <label class="form-check-label pl-1" for="inlineCheckbox1">{{$things}}</label>
                   </div>
-                  @endforeach
+                  @endforeach -->
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="turban">
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Turban</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="sherwani">
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Sherwani</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="inner_suit">
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Inner Suit</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="shawal">
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Shawal</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="waist_coat">
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Waist Coat</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="prince_coat">
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Prince Coat</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="khussa_shoes">
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Khussa/Shoes</label>
+                  </div>
                 </div>        
               </div>
             </div>

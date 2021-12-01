@@ -189,6 +189,8 @@ class AdminController extends Controller
 
     public function live()
     {
-        return "";
+        return "welcome";
     }
+
+    
 }

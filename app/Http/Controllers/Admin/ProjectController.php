@@ -83,6 +83,13 @@ class ProjectController extends Controller
       $order->ref_design = $validatedData['ref_design'];
       $order->order_price = $validatedData['order_price'];
       $order->order_desc = $request->input('order_desc');
+      $order->turban = $request->input('turban');
+      $order->sherwani = $request->input('sherwani');
+      $order->inner_suit = $request->input('inner_suit');
+      $order->shawal = $request->input('shawal');
+      $order->waist_coat = $request->input('waist_coat');
+      $order->prince_coat = $request->input('prince_coat');
+      $order->khussa_shoes = $request->input('khussa_shoes');
       
       $images=array();
       if($files=$request->file('ref_images')){
@@ -99,16 +106,7 @@ class ProjectController extends Controller
       }
       $order->ref_images = implode(",",$images);
       // dd($request->input('need_deliver'));
-      $deliver=array();
-      if($requirements=$request->input('need_deliver')){
-        foreach($requirements as $require){
-          
-
-          $deliver[]=$require;
-        }
-      }
       
-      $order->need_deliver = implode(',', $deliver);
      
       if ($order->save()) {
           return response()->json(['status'=>'true' , 'message' => 'Project created successfully'] , 200);
@@ -191,7 +189,13 @@ class ProjectController extends Controller
       $order->ref_design = $validatedData['ref_design'];
       $order->order_price = $validatedData['order_price'];
       $order->order_desc = $request->input('order_desc');
-
+      $order->turban = $request->input('turban');
+      $order->sherwani = $request->input('sherwani');
+      $order->inner_suit = $request->input('inner_suit');
+      $order->shawal = $request->input('shawal');
+      $order->waist_coat = $request->input('waist_coat');
+      $order->prince_coat = $request->input('prince_coat');
+      $order->khussa_shoes = $request->input('khussa_shoes');
       $images=array();
       if($request->file('ref_images') != ''){
         if($files=$request->file('ref_images')){
@@ -212,22 +216,7 @@ class ProjectController extends Controller
         }
       }
       $order->ref_images = implode(",",$images);
-      $deliver=array();
-      if($requirements=$request->input('need_deliver')){
-        if($requirements=$request->input('need_deliver')){
-          foreach($requirements as $require){
-            
-
-            $deliver[]=$require;
-          }
-        }
-      }else{
-        foreach (explode(',',$order->need_deliver) as $key => $value) {
-          $deliver[]=$value;
-        }
-      }
-      // dd($deliver);
-      $order->need_deliver = implode(',', $deliver);
+     
      
       if ($order->save()) {
           return response()->json(['status'=>'true' , 'message' => 'Order updated successfully'] , 200);
@@ -250,7 +239,77 @@ class ProjectController extends Controller
 
       }else{
           return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
-
       }
     }
+
+    public function updateStatus(Request $request){
+      $getData = Order::find($request->order_id);
+      $product_type = $request->product_type;
+      if($product_type == 'turban'){
+        $getData->turban = 'delivered';
+        if($getData->save()){
+            return response()->json(['status'=>'true' , 'message' => 'Turban status updated'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+        }
+      }
+      if($product_type == 'sherwani'){
+        $getData->sherwani = 'delivered';
+        if($getData->save()){
+            return response()->json(['status'=>'true' , 'message' => 'Sherwani status updated'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+        }
+      }
+      if($product_type == 'inner_suit'){
+        $getData->inner_suit = 'delivered';
+        if($getData->save()){
+            return response()->json(['status'=>'true' , 'message' => 'Inner Suit status updated'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+        }
+      }
+      if($product_type == 'shawal'){
+        $getData->shawal = 'delivered';
+        if($getData->save()){
+            return response()->json(['status'=>'true' , 'message' => 'Shawal status updated'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+        }
+      }
+      if($product_type == 'waist_coat'){
+        $getData->waist_coat = 'delivered';
+        if($getData->save()){
+            return response()->json(['status'=>'true' , 'message' => 'Waist Coat status updated'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+        }
+      }
+      if($product_type == 'prince_coat'){
+        $getData->prince_coat = 'delivered';
+        if($getData->save()){
+            return response()->json(['status'=>'true' , 'message' => 'Price Coat status updated'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+        }
+      }
+      if($product_type == 'khussa_shoes'){
+        $getData->khussa_shoes = 'delivered';
+        if($getData->save()){
+            return response()->json(['status'=>'true' , 'message' => 'Khussa/Shoes status updated'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+        }
+      }
+      
+
+    }
+    
 }

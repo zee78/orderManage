@@ -37,7 +37,13 @@ class Order extends Model
       'ref_design',
       'ref_images',
       'order_price',
-      'need_deliver',
       'order_desc',
+      'turban',
+      'sherwani',
+      'inner_suit',
+      'shawal',
+      'waist_coat',
+      'prince_coat',
+      'khussa_shoes',
     ];
 }
