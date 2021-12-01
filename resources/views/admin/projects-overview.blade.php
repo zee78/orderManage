@@ -34,10 +34,28 @@
                           </div>
                           <div class="d-block mb-3">
                             <h6 class="text-truncate font-size-14">Client Requirement </h6>
-                            <ul class="pl-3">
-                              @foreach($requirements as $require)
-                              <li><label class="text-capitalize">{{$require}}</label></li>
-                              @endforeach
+                            <ul class="pl-0 list-inline d-inline-flex">
+                              @if($order->turban != '')
+                              <li class="mr-2"><button class="btn text-capitalize  py-1 px-3 rounded {{$order->turban == 'delivered' ? 'btn-success': 'btn-secondary'}}" id="turban" onclick="updateStatus('turban',{{$order->id}})">Turban</button></li>
+                              @endif
+                              @if($order->sherwani != '')
+                              <li class="mr-2"><button class="btn text-capitalize py-1 px-3 rounded {{$order->sherwani == 'delivered' ? 'btn-success': 'btn-secondary'}}" id="sherwani" onclick="updateStatus('sherwani',{{$order->id}})">Sherwani</button></li>
+                              @endif
+                              @if($order->inner_suit != '')
+                              <li class="mr-2"><button class="btn text-capitalize py-1 px-3 rounded {{$order->inner_suit == 'delivered' ? 'btn-success': 'btn-secondary'}}" id="inner_suit" onclick="updateStatus('inner_suit',{{$order->id}})">Inner Suit</button></li>
+                              @endif
+                              @if($order->shawal != '')
+                              <li class="mr-2"><button class="btn text-capitalize {{$order->shawal == 'delivered' ? 'btn-success': 'btn-secondary'}} py-1 px-3 rounded" id="shawal" onclick="updateStatus('shawal',{{$order->id}})">Shawal</button></li>
+                              @endif
+                              @if($order->waist_coat != '')
+                              <li class="mr-2"><button class="btn text-capitalize {{$order->waist_coat == 'delivered' ? 'btn-success': 'btn-secondary'}} py-1 px-3 rounded" id="waist_coat" onclick="updateStatus('waist_coat',{{$order->id}})">Waist Coat</button></li>
+                              @endif
+                              @if($order->prince_coat != '')
+                              <li class="mr-2"><button class="btn text-capitalize {{$order->prince_coat == 'delivered' ? 'btn-success': 'btn-secondary'}} py-1 px-3 rounded" id="prince_coat" onclick="updateStatus('prince_coat',{{$order->id}})">Prince Coat</button></li>
+                              @endif
+                              @if($order->khussa_shoes != '')
+                              <li class="mr-2"><button class="btn text-capitalize {{$order->khussa_shoes == 'delivered' ? 'btn-success': 'btn-secondary'}} py-1 px-3 rounded" id="khussa_shoes" onclick="updateStatus('khussa_shoes',{{$order->id}})">Khussa/Shoes</button></li>
+                              @endif
                             </ul>
                             
                           </div>
@@ -282,6 +300,11 @@
 // $('button').on('click',function(){
 // printData();
 // })
+$.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
 function printDiv() {
             var divContents = document.getElementById("section-to-print").innerHTML;
             var a = window.open('', '', 'height=500, width=500');
@@ -292,5 +315,34 @@ function printDiv() {
             a.document.close();
             a.print();
         }
+
+  function updateStatus(type,id){
+
+    $.ajax({
+      url: "{{url('admin/update-status')}}",
+      type: 'POST',
+      data: {product_type:type,order_id:id},
+      // contentType: false,
+      // processData: false,
+
+      success: (response)=>{
+          if (response.status == 'true') {
+              $.notify(response.message , 'success'  );
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/orders/"+id;
+              
+              
+          }else{
+              $.notify(response.message , 'error');
+
+          }
+      },
+      error: (errorResponse)=>{
+          $.notify( errorResponse, 'error'  );
+
+
+      }
+    })
+  }
+
   </script>
 @endsection

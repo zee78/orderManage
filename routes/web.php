@@ -136,8 +136,11 @@ Route::name('admin.')->namespace('Admin')->prefix('admin')->group(function(){
 
       Route::resource('users','\App\Http\Controllers\Admin\AdminController');
       Route::get('/freelancers-list', [AdminController::class, 'index'])->name('freelancers-list');
+      // Route::get('/live-test', [AdminController::class, 'live']);
       Route::get('/clients-list', [AdminController::class, 'clientsList'])->name('clients-list');
       Route::resource('orders','\App\Http\Controllers\Admin\ProjectController');
+
+      Route::post('/update-status', [ProjectController::class,'updateStatus']);
       // Route::resource('categories','\App\Http\Controllers\Admin\CategoriesController');
       // Route::resource('skills','\App\Http\Controllers\Admin\SkillController');
       // Route::resource('supports','\App\Http\Controllers\Admin\SupportController');

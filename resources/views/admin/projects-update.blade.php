@@ -78,12 +78,40 @@
               <div class="form-group">
                 <label for="level" class="col-form-label">Needs to Deliver:</label><br>
                 <div class="d-block mt-2">
-                  @foreach($require_things as $things)
+                  <!-- @foreach($require_things as $things)
                   <div class="form-check form-check-inline">
                     <input type="checkbox" name="need_deliver[]" value="{{$things}}" @foreach($requirements as $key => $value) @if($things == $value) checked @endif @endforeach>
                     <label class="form-check-label pl-1" for="inlineCheckbox1">{{$things}}</label>
                   </div>
-                  @endforeach
+                  @endforeach -->
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="turban" value="{{$getSingleData->turban == 'on' ? 'on' : ''}}" {{$getSingleData->turban == 'on' ? 'checked' : ''}}>
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Turban</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="sherwani" value="{{$getSingleData->sherwani == 'on' ? 'on' : ''}}" {{$getSingleData->sherwani == 'on' ? 'checked' : ''}}>
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Sherwani</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="inner_suit" value="{{$getSingleData->inner_suit == 'on' ? 'on' : ''}}" {{$getSingleData->inner_suit == 'on' ? 'checked' : ''}}>
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Inner Suit</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="shawal" value="{{$getSingleData->shawal == 'on' ? 'on' : ''}}" {{$getSingleData->shawal == 'on' ? 'checked' : ''}}>
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Shawal</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="waist_coat" value="{{$getSingleData->waist_coat == 'on' ? 'on' : ''}}" {{$getSingleData->waist_coat == 'on' ? 'checked' : ''}}>
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Waist Coat</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="prince_coat" value="{{$getSingleData->prince_coat == 'on' ? 'on' : ''}}" {{$getSingleData->prince_coat == 'on' ? 'checked' : ''}}>
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Prince Coat</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" name="khussa_shoes" value="{{$getSingleData->khussa_shoes == 'on' ? 'on' : ''}}" {{$getSingleData->khussa_shoes == 'on' ? 'checked' : ''}}>
+                    <label class="form-check-label pl-1" for="inlineCheckbox1">Khussa/Shoes</label>
+                  </div>
                 </div>        
               </div>
             </div>
