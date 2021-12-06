@@ -11,9 +11,9 @@
      @endcomponent 
                       
 
-    <button type="button" onclick="window.print()" class="btn btn-success d-print-none px-5 rounded-pill mb-3"><i class="fa fa-print pr-2"></i>Print</button>
+    <!-- <button type="button" onclick="window.print()" class="btn btn-success d-print-none px-5 rounded-pill mb-3"><i class="fa fa-print pr-2"></i>Print</button> -->
   <div class="row" id="section-to-print">
-      <div class="col-lg-8">
+      <div class="col-lg-12">
           <div class="card">
               <div class="card-body">
                   <div class="media">
@@ -78,37 +78,29 @@
                       </div>
                   </div>
 
-                  <h5 class="font-size-15 mt-4 d-none d-print-block">Size & Description :</h5>
+                  <h5 class="font-size-15 mt-4">Size & Description :</h5>
 
-                  <div class="table-responsive d-none d-print-block">
+                  <div class="table-responsive">
                     <table class="table table-centered">
                       <tbody>
                         <tr>
                           <td><h5 class="font-size-14 m-0">
                             <a href="" class="text-dark">Neck</a></h5></td>
                           <td>
-                            <div>
-                                <a href="#" class="font-size-14">{{$order->neck}}</a>
-                            </div>
+                            <h5 class="font-size-14 m-0"><a href="#" class="text-dark ">{{$order->neck}}</a></h5>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Shoulder</a></h5></td>
                           <td>
                             <div>
                               <a href="#" class="font-size-14 text-dark">{{$order->shoulder}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Arms</a></h5></td>
                           <td>
                             <div>
                               <a href="#" class="font-size-14 text-dark">{{$order->arms}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Biceps</a></h5></td>
                           <td>
                             <div>
@@ -116,31 +108,49 @@
                             </div>
                           </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Shoulder</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->shoulder}}</a>
+                            </div>
+                          </td>
+                        </tr> -->
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Arms</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->arms}}</a>
+                            </div>
+                          </td>
+                        </tr>
+ -->                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Biceps</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->biceps}}</a>
+                            </div>
+                          </td>
+                        </tr>
+ -->                    <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Chest</a></h5></td>
                           <td>
                             <div>
                               <a href="#" class="font-size-14 text-dark">{{$order->chest}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Back</a></h5></td>
                           <td>
                             <div>
                               <a href="#" class="font-size-14 text-dark">{{$order->back}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Belly</a></h5></td>
                           <td>
                             <div>
                               <a href="#" class="font-size-14 text-dark">{{$order->belly}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Wc Length</a></h5></td>
                           <td>
                             <div>
@@ -148,6 +158,30 @@
                             </div>
                           </td>
                         </tr>
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Back</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->back}}</a>
+                            </div>
+                          </td>
+                        </tr> -->
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Belly</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->belly}}</a>
+                            </div>
+                          </td>
+                        </tr>
+ -->                    <!--     <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Wc Length</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->wc_length}}</a>
+                            </div>
+                          </td>
+                        </tr> -->
                         <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Pc Length</a></h5></td>
                           <td>
@@ -155,24 +189,18 @@
                               <a href="#" class="font-size-14 text-dark">{{$order->pc_length}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Sherwani Length</a></h5></td>
                           <td>
                             <div>
                               <a href="#" class="font-size-14 text-dark">{{$order->sherwani_length}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Kurta Length</a></h5></td>
                           <td>
                             <div>
                               <a href="#" class="font-size-14 text-dark">{{$order->kurta_length}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Waist</a></h5></td>
                           <td>
                             <div>
@@ -180,31 +208,49 @@
                             </div>
                           </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Sherwani Length</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->sherwani_length}}</a>
+                            </div>
+                          </td>
+                        </tr> -->
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Kurta Length</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->kurta_length}}</a>
+                            </div>
+                          </td>
+                        </tr> -->
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Waist</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->waist}}</a>
+                            </div>
+                          </td>
+                        </tr>
+ -->                    <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Hips</a></h5></td>
                           <td>
                             <div>
                               <a href="#" class="font-size-14 text-dark">{{$order->hips}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Thigh</a></h5></td>
                           <td>
                             <div>
                               <a href="#" class="font-size-14 text-dark">{{$order->thigh}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Knee</a></h5></td>
                           <td>
                             <div>
                               <a href="#" class="font-size-14 text-dark">{{$order->knee}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Calf</a></h5></td>
                           <td>
                             <div>
@@ -212,6 +258,30 @@
                             </div>
                           </td>
                         </tr>
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Thigh</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->thigh}}</a>
+                            </div>
+                          </td>
+                        </tr> -->
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Knee</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->knee}}</a>
+                            </div>
+                          </td>
+                        </tr> -->
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Calf</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->calf}}</a>
+                            </div>
+                          </td>
+                        </tr> -->
                         <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Botton</a></h5></td>
                           <td>
@@ -219,8 +289,6 @@
                               <a href="#" class="font-size-14 text-dark">{{$order->botton}}</a>
                             </div>
                           </td>
-                        </tr>
-                        <tr>
                           <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Length</a></h5></td>
                           <td>
                             <div>
@@ -228,11 +296,19 @@
                             </div>
                           </td>
                         </tr>
+                        <!-- <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Length</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">{{$order->length}}</a>
+                            </div>
+                          </td>
+                        </tr> -->
                       </tbody>
                     </table>
                   </div>
-                  <h5 class="d-none d-print-block">Reference</h5>
-                  <div class="table-responsive d-none d-print-block">
+                  <h5 class="">Reference</h5>
+                  <div class="table-responsive">
                     <table class="table table-centered">
                       <tbody>
                         <tr>
