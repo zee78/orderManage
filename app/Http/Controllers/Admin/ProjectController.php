@@ -245,8 +245,13 @@ class ProjectController extends Controller
     public function updateStatus(Request $request){
       $getData = Order::find($request->order_id);
       $product_type = $request->product_type;
+      // dd($product_type,$getData);
       if($product_type == 'turban'){
-        $getData->turban = 'delivered';
+        if($getData->turban == 'delivered'){
+          $getData->turban = 'on';
+        }else{
+          $getData->turban = 'delivered';
+        }
         if($getData->save()){
             return response()->json(['status'=>'true' , 'message' => 'Turban status updated'] , 200);
 
@@ -255,7 +260,11 @@ class ProjectController extends Controller
         }
       }
       if($product_type == 'sherwani'){
-        $getData->sherwani = 'delivered';
+        if($getData->sherwani == 'delivered'){
+          $getData->sherwani = 'on';
+        }else{
+          $getData->sherwani = 'delivered';
+        }
         if($getData->save()){
             return response()->json(['status'=>'true' , 'message' => 'Sherwani status updated'] , 200);
 
@@ -264,7 +273,11 @@ class ProjectController extends Controller
         }
       }
       if($product_type == 'inner_suit'){
-        $getData->inner_suit = 'delivered';
+        if($getData->inner_suit == 'delivered'){
+          $getData->inner_suit = 'on';
+        }else{
+          $getData->inner_suit = 'delivered';
+        }
         if($getData->save()){
             return response()->json(['status'=>'true' , 'message' => 'Inner Suit status updated'] , 200);
 
@@ -273,7 +286,11 @@ class ProjectController extends Controller
         }
       }
       if($product_type == 'shawal'){
-        $getData->shawal = 'delivered';
+        if($getData->shawal == 'delivered'){
+          $getData->shawal = 'on';
+        }else{
+          $getData->shawal = 'delivered';
+        }
         if($getData->save()){
             return response()->json(['status'=>'true' , 'message' => 'Shawal status updated'] , 200);
 
@@ -282,7 +299,11 @@ class ProjectController extends Controller
         }
       }
       if($product_type == 'waist_coat'){
-        $getData->waist_coat = 'delivered';
+        if($getData->waist_coat == 'delivered'){
+          $getData->waist_coat = 'on';
+        }else{
+          $getData->waist_coat = 'delivered';
+        }
         if($getData->save()){
             return response()->json(['status'=>'true' , 'message' => 'Waist Coat status updated'] , 200);
 
@@ -291,7 +312,11 @@ class ProjectController extends Controller
         }
       }
       if($product_type == 'prince_coat'){
-        $getData->prince_coat = 'delivered';
+        if($getData->prince_coat == 'delivered'){
+          $getData->prince_coat = 'on';
+        }else{
+          $getData->prince_coat = 'delivered';
+        }
         if($getData->save()){
             return response()->json(['status'=>'true' , 'message' => 'Price Coat status updated'] , 200);
 
@@ -300,7 +325,11 @@ class ProjectController extends Controller
         }
       }
       if($product_type == 'khussa_shoes'){
-        $getData->khussa_shoes = 'delivered';
+        if($getData->khussa_shoes == 'delivered'){
+          $getData->khussa_shoes = 'on';
+        }else{
+          $getData->khussa_shoes = 'delivered';
+        }
         if($getData->save()){
             return response()->json(['status'=>'true' , 'message' => 'Khussa/Shoes status updated'] , 200);
 
