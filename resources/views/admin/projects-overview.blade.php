@@ -340,6 +340,15 @@
                             </div>
                           </td>
                         </tr>
+                        <tr>
+                          <td><h5 class="font-size-14 m-0"><a href="" class="text-dark">Order Description</a></h5></td>
+                          <td>
+                            <div>
+                              <a href="#" class="font-size-14 text-dark">
+                              {{$order->order_desc}}</a>
+                            </div>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>                    
                   </div>
