@@ -37,26 +37,26 @@
         <h4 class="card-title mb-4">Create New User</h4>
         <form id="update-user-form">
           @csrf
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="hidden" name="id" value="{{$getSingleData->id}}">
-                <label for="formrow-firstName-input">First Name</label>
-                <input type="text" class="form-control" value="{{$getSingleData->first_name}}" name="first_name" id="formrow-firstName-input">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="formrow-lastName-input">Last Name</label>
-                <input type="text" class="form-control" name="last_name" value="{{$getSingleData->last_name}}" id="formrow-lastName-input">
-              </div>
-            </div>
-          </div>
+          <!--<div class="row">-->
+          <!--  <div class="col-md-6">-->
+          <!--    <div class="form-group">-->
+          <!--      <input type="hidden" name="id" value="{{$getSingleData->id}}">-->
+          <!--      <label for="formrow-firstName-input">First Name</label>-->
+          <!--      <input type="text" class="form-control" value="{{$getSingleData->first_name}}" name="first_name" id="formrow-firstName-input">-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--  <div class="col-md-6">-->
+          <!--    <div class="form-group">-->
+          <!--      <label for="formrow-lastName-input">Last Name</label>-->
+          <!--      <input type="text" class="form-control" name="last_name" value="{{$getSingleData->last_name}}" id="formrow-lastName-input">-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="formrow-userName-input">User Name</label>
-                <input type="text" class="form-control" name="username" value="{{$getSingleData->username}}" readonly id="formrow-userName-input">
+                <input type="text" class="form-control" name="username" value="{{$getSingleData->name}}" readonly id="formrow-userName-input">
               </div>
             </div>
             <div class="col-md-6">
@@ -66,24 +66,24 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Mobile Number</label>
-                <input type="text" class="form-control" name="mobile_number" value="{{$getSingleData->mobile_number}}" id="phone" >
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="formrow-email-input">Account Type</label>
-                <select name="account_type" class="form-control">
-                  <option value="">Select Type</option>
-                  <option value="Freelancer" {{ $getSingleData->account_type === "Freelancer" ? "selected" : "" }}>Freelancer</option>
-                  <option value="Client" {{ $getSingleData->account_type === "Client" ? "selected" : "" }} >Client</option>
-                </select>
-              </div>
-            </div>
-          </div>
+          <!--<div class="row">-->
+          <!--  <div class="col-md-6">-->
+          <!--    <div class="form-group">-->
+          <!--      <label>Mobile Number</label>-->
+          <!--      <input type="text" class="form-control" name="mobile_number" value="{{$getSingleData->mobile_number}}" id="phone" >-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--  <div class="col-md-6">-->
+          <!--    <div class="form-group">-->
+          <!--      <label for="formrow-email-input">Account Type</label>-->
+          <!--      <select name="account_type" class="form-control">-->
+          <!--        <option value="">Select Type</option>-->
+          <!--        <option value="Freelancer" {{ $getSingleData->account_type === "Freelancer" ? "selected" : "" }}>Freelancer</option>-->
+          <!--        <option value="Client" {{ $getSingleData->account_type === "Client" ? "selected" : "" }} >Client</option>-->
+          <!--      </select>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
@@ -122,12 +122,12 @@
       }
   });
 
-  $('.select2').select2();
-var phone_number = window.intlTelInput(document.querySelector("#phone"), {
-  separateDialCode: true,
-  hiddenInput: "full",
-  utilsScript: "/assets/js/utils.js"
-});
+//   $('.select2').select2();
+// var phone_number = window.intlTelInput(document.querySelector("#phone"), {
+//   separateDialCode: true,
+//   hiddenInput: "full",
+//   utilsScript: "/assets/js/utils.js"
+// });
   // var input = document.querySelector("#phone");
 
   $("#update-user-form").validate({
@@ -137,14 +137,14 @@ var phone_number = window.intlTelInput(document.querySelector("#phone"), {
         error.insertAfter(element.parents(".form-group"))
       },
           rules: {
-              first_name: {
-                  required: true,
-                  // lettersonly: true
-              },
-              last_name: {
-                  required: true,
-                  // lettersonly: true
-              },
+            //   first_name: {
+            //       required: true,
+            //       // lettersonly: true
+            //   },
+            //   last_name: {
+            //       required: true,
+            //       // lettersonly: true
+            //   },
               username: {
                   required: true,
                   // email: true
@@ -153,10 +153,10 @@ var phone_number = window.intlTelInput(document.querySelector("#phone"), {
                   required: true,
                   // number: true
               },
-              account_type: {
-                  required: true,
+            //   account_type: {
+            //       required: true,
                   
-              },
+            //   },
               password: {
                   required: true,
               },
@@ -164,14 +164,14 @@ var phone_number = window.intlTelInput(document.querySelector("#phone"), {
 
           },
           messages: {
-              first_name: {
-                  required: "Please select first name",
+            //   first_name: {
+            //       required: "Please select first name",
 
-              } ,
-              last_name: {
-                  required: "Please enter last name",
+            //   } ,
+            //   last_name: {
+            //       required: "Please enter last name",
 
-              } ,
+            //   } ,
               username: {
                   required: "Please select username",
 
@@ -180,10 +180,10 @@ var phone_number = window.intlTelInput(document.querySelector("#phone"), {
                   required: "Please select email",
                   // number: "Please enter valid integer",
               } ,
-              account_type: {
-                  required: "Please enter account type",
+            //   account_type: {
+            //       required: "Please enter account type",
 
-              } ,
+            //   } ,
               password: {
                   required: "Please select password",
 
@@ -214,9 +214,9 @@ var phone_number = window.intlTelInput(document.querySelector("#phone"), {
             if (response.status == 'true') {
                 $.notify(response.message , 'success'  );
                 if(response.userType == 'Freelancer'){
-                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/freelancers-list/";
+                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/orderManage/public/admin/freelancers-list/";
                 }else{
-                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/clients-list/";
+                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/orderManage/public/admin/clients-list/";
                 }
                 
             }else{

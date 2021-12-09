@@ -27,7 +27,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-      $orders = Order::orderBy('created_at', 'DESC')->get();
+      $orders = Order::where('posted_by',auth()->user()->id)->orderBy('created_at', 'DESC')->get();
       return View::make('admin.orders-list')->with([
           'orders' => $orders
       ]);
@@ -55,7 +55,7 @@ class ProjectController extends Controller
       $validatedData = $request->validated();
     
       $order = new Order();
-      $order->posted_by = auth()->user()->name;
+      $order->posted_by = auth()->user()->id;
       $order->customer_name = $validatedData['customer_name'];
       $order->customer_contact = $validatedData['customer_contact'];
       $order->booking_date = $validatedData['booking_date'];
@@ -161,7 +161,7 @@ class ProjectController extends Controller
     
       $order = Order::find($id);
       // dd($order->need_deliver);
-      $order->posted_by = auth()->user()->name;
+      $order->posted_by = auth()->user()->id;
       $order->customer_name = $validatedData['customer_name'];
       $order->customer_contact = $validatedData['customer_contact'];
       $order->booking_date = $validatedData['booking_date'];

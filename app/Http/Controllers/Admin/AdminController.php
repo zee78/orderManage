@@ -81,23 +81,25 @@ class AdminController extends Controller
      */
     public function store(StoreUsers $request)
     {
+        // dd($request->all());
       $validatedData = $request->validated();
-      $user = new User;
-      $user->first_name = $validatedData['first_name'];
-      $user->last_name = $validatedData['last_name'];
-      $user->username = $validatedData['username'];
+      $user = new Admin;
+    //   $user->first_name = $validatedData['first_name'];
+    //   $user->last_name = $validatedData['last_name'];
+      $user->name = $validatedData['username'];
       $user->email = $validatedData['email'];
-      $user->account_type = $validatedData['account_type'];
-      $full_number = str_replace('+','',$request->input('full'));
-      $country_code = str_replace($request->input('mobile_number'),'',$full_number);
-      // dd($country_code);
-      $mobile_number = $request->input('mobile_number');
-      $country = Countries::where('phonecode',$country_code)->orwhere('phonecode','+'.$country_code)->first()->name;
+    //   $user->account_type = $validatedData['account_type'];
+    //   $full_number = str_replace('+','',$request->input('full'));
+    //   $country_code = str_replace($request->input('mobile_number'),'',$full_number);
+    //   // dd($country_code);
+    //   $mobile_number = $request->input('mobile_number');
+    //   $country = Countries::where('phonecode',$country_code)->orwhere('phonecode','+'.$country_code)->first()->name;
       $user->password = Hash::make(trim($validatedData['password']));
-      $user->mobile_number = $full_number;
-      $user->user_status = 'offline';
+    //   $user->mobile_number = $full_number;
+    //   $user->user_status = 'offline';
       $user->remember_token = $request->input('_token');
-      $user->country = $country;
+    //   $user->country = $country;
+    $user->role = 'admin';
       
       
       if ($user->save()) {
@@ -127,7 +129,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-      $getSingleData = User::find($id);
+      $getSingleData = Admin::find($id);
       
       return \View::make('admin.user-update' , compact('getSingleData'));
     }
@@ -142,24 +144,24 @@ class AdminController extends Controller
     public function update(UpdateUsers $request, $id)
     {
       $validatedData = $request->validated();
-      $findData = User::find($id);
+      $findData = Admin::find($id);
 
-      $findData->first_name = $validatedData['first_name'];
-      $findData->last_name = $validatedData['last_name'];
-      $findData->username = $validatedData['username'];
+    //   $findData->first_name = $validatedData['first_name'];
+    //   $findData->last_name = $validatedData['last_name'];
+      $findData->name = $validatedData['username'];
       $findData->email = $validatedData['email'];
-      $findData->account_type = $validatedData['account_type'];
-      $full_number = str_replace('+','',$request->input('full'));
-      $country_code = str_replace($request->input('mobile_number'),'',$full_number);
-      // dd($country_code);
-      $mobile_number = $request->input('mobile_number');
-      $country = Countries::where('phonecode',$country_code)->orwhere('phonecode','+'.$country_code)->first()->name;
+    //   $findData->account_type = $validatedData['account_type'];
+    //   $full_number = str_replace('+','',$request->input('full'));
+    //   $country_code = str_replace($request->input('mobile_number'),'',$full_number);
+    //   // dd($country_code);
+    //   $mobile_number = $request->input('mobile_number');
+    //   $country = Countries::where('phonecode',$country_code)->orwhere('phonecode','+'.$country_code)->first()->name;
       $findData->password = Hash::make(trim($validatedData['password']));
-      $findData->mobile_number = $full_number;
-      $findData->user_status = 'offline';
-      $findData->remember_token = $request->input('_token');
-      $findData->country = $country;
-      
+    //   $findData->mobile_number = $full_number;
+    //   $findData->user_status = 'offline';
+    //   $findData->remember_token = $request->input('_token');
+    //   $findData->country = $country;
+      $findData->role = 'admin';
       
       if ($findData->save()) {
           return response()->json(['status'=>'true' , 'message' => 'User updated successfully','userType' => $findData->account_type] , 200);
@@ -177,7 +179,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-      $deleteData = User::find($id);
+      $deleteData = Admin::find($id);
       if($deleteData->delete()){
           return response()->json(['status'=>'true' , 'message' => 'User deleted successfully'] , 200);
 

@@ -37,24 +37,24 @@
         <h4 class="card-title mb-4">Create New User</h4>
         <form id="create-user-form">
           @csrf
+          <!--<div class="row">-->
+          <!--  <div class="col-md-6">-->
+          <!--    <div class="form-group">-->
+          <!--      <label for="formrow-firstName-input">First Name</label>-->
+          <!--      <input type="text" class="form-control" name="first_name" id="formrow-firstName-input">-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--  <div class="col-md-6">-->
+          <!--    <div class="form-group">-->
+          <!--      <label for="formrow-lastName-input">Last Name</label>-->
+          <!--      <input type="text" class="form-control" name="last_name" id="formrow-lastName-input">-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="formrow-firstName-input">First Name</label>
-                <input type="text" class="form-control" name="first_name" id="formrow-firstName-input">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="formrow-lastName-input">Last Name</label>
-                <input type="text" class="form-control" name="last_name" id="formrow-lastName-input">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="formrow-userName-input">User Name</label>
+                <label for="formrow-userName-input">Name</label>
                 <input type="text" class="form-control" name="username" id="formrow-userName-input">
               </div>
             </div>
@@ -65,24 +65,24 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Mobile Number</label>
-                <input type="text" class="form-control" name="mobile_number" id="phone" >
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="formrow-email-input">Account Type</label>
-                <select name="account_type" class="form-control">
-                  <option value="">Select Type</option>
-                  <option value="Freelancer">Freelancer</option>
-                  <option value="Client">Client</option>
-                </select>
-              </div>
-            </div>
-          </div>
+          <!--<div class="row">-->
+          <!--  <div class="col-md-6">-->
+          <!--    <div class="form-group">-->
+          <!--      <label>Mobile Number</label>-->
+          <!--      <input type="text" class="form-control" name="mobile_number" id="phone" >-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--  <div class="col-md-6">-->
+          <!--    <div class="form-group">-->
+          <!--      <label for="formrow-email-input">Account Type</label>-->
+          <!--      <select name="account_type" class="form-control">-->
+          <!--        <option value="">Select Type</option>-->
+          <!--        <option value="Freelancer">Freelancer</option>-->
+          <!--        <option value="Client">Client</option>-->
+          <!--      </select>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
@@ -138,13 +138,13 @@
       }
   });
 
-  $('.select2').select2();
-var phone_number = window.intlTelInput(document.querySelector("#phone"), {
-  separateDialCode: true,
-  hiddenInput: "full",
-  utilsScript: "/assets/js/utils.js",
-  excludeCountries: ["il"]
-});
+//   $('.select2').select2();
+// var phone_number = window.intlTelInput(document.querySelector("#phone"), {
+//   separateDialCode: true,
+//   hiddenInput: "full",
+//   utilsScript: "/assets/js/utils.js",
+//   excludeCountries: ["il"]
+// });
   // var input = document.querySelector("#phone");
 
   $("#create-user-form").validate({
@@ -230,9 +230,9 @@ var createFormData = new FormData (formData);
             if (response.status == 'true') {
                 $.notify(response.message , 'success'  );
                 if(response.userType == 'Freelancer'){
-                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/freelancers-list/";
+                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/orderManage/public/admin/freelancers-list/";
                 }else{
-                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/clients-list/";
+                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/orderManage/public/admin/clients-list/";
                 }
                 
             }else{

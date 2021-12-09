@@ -24,11 +24,11 @@ class UpdateUsers extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            // 'first_name' => 'required',
+            // 'last_name' => 'required',
             'username' => 'required',
             'email' => 'required',
-            'account_type' => 'required',
+            // 'account_type' => 'required',
             'password' => 'required',
         ];
     }

@@ -96,7 +96,7 @@
       console.log($projectId)
 
          $.ajax({
-          url: '/admin/users/'+$projectId,
+          url: '/orderManage/public/admin/users/'+$projectId,
           type: 'DELETE',
           data: data,
           processData: false,
@@ -106,7 +106,7 @@
               if (response.status == 'true') {
 
                   $.notify(response.message , 'success'  );
-                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/admin/clients-list";
+                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/orderManage/public/admin/clients-list";
 
               }else{
                   $.notify(response.message , 'error');
