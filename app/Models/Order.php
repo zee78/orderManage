@@ -37,6 +37,8 @@ class Order extends Model
       'ref_design',
       'ref_images',
       'order_price',
+      'advance_amount',
+      'balance_amount',
       'order_desc',
       'turban',
       'sherwani',

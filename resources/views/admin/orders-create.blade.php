@@ -274,7 +274,19 @@
         <div class="form-group row mb-4">
           <label for="projectdesc" class="col-form-label col-lg-2">Order Price:</label>
           <div class="col-lg-10">
-            <input type="text" form="createProjectForm" class="form-control" name="order_price" placeholder="Order Price">
+            <input type="text" form="createProjectForm" class="form-control" name="order_price" id="orderPrice" placeholder="Order Price">
+          </div>
+        </div>
+        <div class="form-group row mb-4">
+          <label for="projectdesc" class="col-form-label col-lg-2">Advance Amount:</label>
+          <div class="col-lg-10">
+            <input type="text" form="createProjectForm" class="form-control" name="advance_amount" id="advanceAmount" placeholder="Advance Amount">
+          </div>
+        </div>
+        <div class="form-group row mb-4">
+          <label for="projectdesc" class="col-form-label col-lg-2">Balance Amount:</label>
+          <div class="col-lg-10">
+            <input type="text" form="createProjectForm" class="form-control" name="balance_amount" id="balanceAmount" placeholder="Balance Amount" readonly>
           </div>
         </div>
         <h4>Order Description</h4>
@@ -426,7 +438,12 @@
               order_price: {
                   required: false,  
               },
-
+              advance_amount: {
+                  required: false,  
+              },
+              balance_amount: {
+                  required: false,  
+              },
 
           },
           messages: {
@@ -530,6 +547,14 @@
                   required: "Please enter order price",
 
               } ,
+              advance_amount: {
+                  required: "Please enter advance amount",
+
+              } ,
+              balance_amount: {
+                  required: "Please enter balance amount",
+
+              } ,
 
           },
 
@@ -570,5 +595,13 @@ var createFormData = new FormData (formData);
     })
 
 }
+
+$('#advanceAmount').keyup(function(){
+   $total = $('#orderPrice').val(); 
+   $advance = $(this).val();
+   $blance = $total - $advance;
+   $('#balanceAmount').val($blance);
+   
+});
 </script>
 @endsection

@@ -49,6 +49,8 @@ class UpdateOrder extends FormRequest
           'ref_color' => 'required',
           'ref_design' => 'required',
           'order_price' => 'required',
+          'advance_amount' => 'required',
+          'balance_amount' => 'required',
         ];
     }
 }

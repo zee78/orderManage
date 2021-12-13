@@ -281,7 +281,19 @@
         <div class="form-group row mb-4">
           <label for="projectdesc" class="col-form-label col-lg-2">Order Price:</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control" form="updateProjectForm" name="order_price" placeholder="Price" value="{{$getSingleData->order_price}}">
+            <input type="text" class="form-control" form="updateProjectForm" name="order_price" placeholder="Price" id="orderPrice" value="{{$getSingleData->order_price}}">
+          </div>
+        </div>
+        <div class="form-group row mb-4">
+          <label for="projectdesc" class="col-form-label col-lg-2">Advance Amount:</label>
+          <div class="col-lg-10">
+            <input type="text" form="updateProjectForm" class="form-control" name="advance_amount" placeholder="Advance Amount" id="advanceAmount" value="{{$getSingleData->advance_amount}}">
+          </div>
+        </div>
+        <div class="form-group row mb-4">
+          <label for="projectdesc" class="col-form-label col-lg-2">Balance Amount:</label>
+          <div class="col-lg-10">
+            <input type="text" form="updateProjectForm" class="form-control" name="balance_amount" placeholder="Balance Amount" id="balanceAmount" value="{{$getSingleData->balance_amount}}" readonly>
           </div>
         </div>
         <h4>Order Description</h4>
@@ -433,6 +445,12 @@
               order_price: {
                   required: false,  
               },
+              advance_amount: {
+                  required: true,  
+              },
+              balance_amount: {
+                  required: true,  
+              },
 
           },
           messages: {
@@ -535,6 +553,14 @@
               order_price: {
                   required: "please enter order price",  
               },
+              advance_amount: {
+                  required: "Please enter advance amount",
+
+              } ,
+              balance_amount: {
+                  required: "Please enter balance amount",
+
+              } ,
           },
 
           submitHandler: function(form) {
@@ -574,5 +600,11 @@
     })
 
 }
+$('#advanceAmount').keyup(function(){
+   $total = $('#orderPrice').val(); 
+   $advance = $(this).val();
+   $blance = $total - $advance;
+   $('#balanceAmount').val($blance);
+});
 </script>
 @endsection

@@ -17,6 +17,7 @@ use Hash;
 use Session;
 use Mail;
 use Redirect;
+use DB;
 
 class ProjectController extends Controller
 {
@@ -28,11 +29,23 @@ class ProjectController extends Controller
     public function index()
     {
       $orders = Order::where('posted_by',auth()->user()->id)->orderBy('created_at', 'DESC')->get();
+      
+      
       return View::make('admin.orders-list')->with([
           'orders' => $orders
       ]);
     }
-
+    
+    public function monthlyData(Request $request){
+        $months = Order::select(DB::raw("(COUNT(*)) as count"),DB::raw("MONTHNAME(created_at) as monthname"),DB::raw("sum(order_price) as total_sale"),DB::raw("sum(advance_amount) as advance"),DB::raw("sum(balance_amount) as balance"))
+        ->whereYear('created_at', date('Y'))
+        ->groupBy('monthname')
+        ->get();
+        
+        return View::make('admin.monthly-sale')->with([
+          'months' => $months
+      ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -82,6 +95,8 @@ class ProjectController extends Controller
       $order->ref_color = $validatedData['ref_color'];
       $order->ref_design = $validatedData['ref_design'];
       $order->order_price = $validatedData['order_price'];
+      $order->advance_amount = $validatedData['advance_amount'];
+      $order->balance_amount = $validatedData['balance_amount'];
       $order->order_desc = $request->input('order_desc');
       $order->turban = $request->input('turban');
       $order->sherwani = $request->input('sherwani');
@@ -188,6 +203,8 @@ class ProjectController extends Controller
       $order->ref_color = $validatedData['ref_color'];
       $order->ref_design = $validatedData['ref_design'];
       $order->order_price = $validatedData['order_price'];
+      $order->advance_amount = $validatedData['advance_amount'];
+      $order->balance_amount = $validatedData['balance_amount'];
       $order->order_desc = $request->input('order_desc');
       $order->turban = $request->input('turban');
       $order->sherwani = $request->input('sherwani');

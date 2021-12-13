@@ -44,6 +44,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('admin.orders.index')}}">Orders</a></li>
+                        <li><a href="{{route('admin.orders.monthly-sale')}}">Monthly Sale</a></li>
                         <li><a href="{{route('admin.orders.create')}}">Create New</a></li>
                     </ul>
                 </li>

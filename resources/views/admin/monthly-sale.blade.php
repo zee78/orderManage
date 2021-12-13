@@ -2,9 +2,9 @@
 @section('title') Orders List @endsection
 @section('content')
 @component('admin.common-components.breadcrumb')
-@slot('title') Orders List @endslot
-@slot('li_1') Orders @endslot
-@slot('li_2') Orders List @endslot
+@slot('title') Month Wise Sale @endslot
+@slot('li_1') Months Wise SaleOrders @endslot
+@slot('li_2') Month Wise Sale @endslot
 @endcomponent
 
 <div class="row">
@@ -15,51 +15,22 @@
           <thead>
             <tr>
               <th scope="col" style="width: 100px">#</th>
-              <th scope="col">Customer Name</th>
-              <th scope="col">Customer Contact</th>
-              <th scope="col">Booking Date</th>
-              <th scope="col">Delivery Date</th>
-              <!-- <th scope="col">Invoive No</th> -->
-              <th scope="col">Order Stutus</th>
-              <th scope="col">Action</th>
+              <th scope="col">Month</th>
+              <th scope="col">Total Sale</th>
+              <th scope="col">Advance Amount</th>
+              <th scope="col">Balance Amount</th>
             </tr>
           </thead>
           <tbody>
-            @foreach($orders as $key => $order)
+            @foreach($months as $key => $sale)
             <tr>
               <td>{{$key+1}}</td>
               <td>
-                <h5 class="text-truncate font-size-14"><a href="#" class="text-dark">{{$order->customer_name}}</a></h5>
+                <h5 class="text-truncate font-size-14"><a href="#" class="text-dark">{{$sale->monthname}}</a></h5>
               </td>
-              <td>{{$order->customer_contact}}</td>
-              <td class="text-capitalize">{{date('d F Y', strtotime($order->booking_date))}}</td>
-              <td>{{date('d F Y', strtotime($order->delivery_date))}}</td>
-              <!-- <td>{{$order->invoice_no}}</td> -->
-              <?php 
-                $startdate = strtotime(date('Y-m-d'));
-                $enddate = strtotime(date($order->delivery_date));
-                $days = (int)(($enddate - $startdate)/86400);
-                $remain_days = $days;
-               ?>
-              <td>
-                @if($remain_days <= 0)
-                <span class="bg-danger text-white p-1 rounded">Delivery Date Passed</span>
-                @elseif($remain_days <= 5)
-                  <span class="bg-danger text-white p-1 rounded">Remaining {{$remain_days}} days for delivery</span>
-                @elseif($remain_days > 5 && $remain_days <= 10)
-                  <span class="bg-success text-white p-1 rounded">Remaining {{$remain_days}} days for delivery</span>
-                @else
-                  <span class="bg-primary text-white p-1 rounded">Remaining {{$remain_days}} days for delivery</span>
-                @endif
-              </td>
-              
-              <td>
-                <div>
-                  <a href="{{url('admin/orders/'.$order->id.'/edit')}}" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-success rounded"><i class="bx bx-edit"></i></a>
-                  <button class="btn btn-primary rounded" data-toggle="modal" onclick="deleteProject({{$order->id}})" data-placement="top" title="Delete"><i class="bx bx-trash-alt"></i></button>
-                  <a href="{{url('admin/orders/'.$order->id)}}" class="btn btn-secondary rounded" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye"></i></a>
-                </div>
-              </td>
+              <td>RS {{$sale->total_sale}}</td>
+              <td>RS {{$sale->advance}}</td>
+              <td>RS {{$sale->balance}}</td>
             </tr>
             @endforeach
           </tbody>
