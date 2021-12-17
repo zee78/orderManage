@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Hash;
 use Session;
 use Mail;
@@ -44,7 +45,21 @@ class ProjectController extends Controller
         
         return View::make('admin.monthly-sale')->with([
           'months' => $months
-      ]);
+        ]);
+    }
+    
+    // Monthly Base Data
+    public function monthlyOrders(Request $request){
+        $total_members_data= Order::get()
+            ->groupBy(function($val) {
+            return Carbon::parse($val->created_at)->format('M');
+        });
+    
+        return View::make('admin.monthly-data')->with([
+          'monthlyData' => $total_members_data
+        ]);
+
+        //  dd($total_members_data['Nov']);
     }
     /**
      * Show the form for creating a new resource.

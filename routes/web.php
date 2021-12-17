@@ -140,6 +140,7 @@ Route::name('admin.')->namespace('Admin')->prefix('admin')->group(function(){
       Route::get('/clients-list', [AdminController::class, 'clientsList'])->name('clients-list');
       Route::resource('orders','\App\Http\Controllers\Admin\ProjectController');
       Route::get('monthly-sale',[ProjectController::class,'monthlyData'])->name('orders.monthly-sale');
+      Route::get('monthly-orders',[ProjectController::class,'monthlyOrders'])->name('orders.monthly-orders');
       Route::post('/update-status', [ProjectController::class,'updateStatus']);
       // Route::resource('categories','\App\Http\Controllers\Admin\CategoriesController');
       // Route::resource('skills','\App\Http\Controllers\Admin\SkillController');
